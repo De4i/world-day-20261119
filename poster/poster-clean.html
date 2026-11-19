@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The World Today — Thursday 19 November 2026</title>
+<style>
+  :root{
+    --paper:#f4efe3; --ink:#181512; --faint:#5f584a; --rule:#2a251e;
+    --amr:#b03a2e; --eur:#1f5f8b; --mid:#c07a1e; --asi:#6d3d8f; --afr:#1e7d4e; --ocn:#0e7d7d;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1024px;height:1024px;overflow:hidden;}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Liberation Sans","DejaVu Sans",Arial,sans-serif;
+    display:flex; flex-direction:column; height:1024px;
+  }
+  .band{flex:0 0 auto; overflow:hidden;}
+  /* masthead */
+  #masthead{padding:10px 26px 0 26px; text-align:center; border-bottom:4px double var(--rule);}
+  #masthead .corners{display:flex; justify-content:space-between; font-size:9px; letter-spacing:.1em; color:var(--faint); text-transform:uppercase;}
+  #masthead h1{font-family:"Liberation Serif","DejaVu Serif",Georgia,serif; font-weight:700; font-size:46px; letter-spacing:.5px; line-height:1.02; margin-top:4px;}
+  #masthead .strap{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); margin:5px 0 9px 0;}
+  #masthead .strap b{color:var(--ink);}
+  /* lead package */
+  #lead{display:flex; height:242px; border-bottom:1.5px solid var(--rule);}
+  #leadart{flex:0 0 404px; background:#e9def2; border-right:1px solid #b9ae98; position:relative; overflow:hidden;}
+  #leadart svg{position:absolute; inset:0; width:100%; height:100%;}
+  #leadstory{flex:1 1 auto; padding:12px 16px 8px 16px;}
+  #leadstory .kicker{font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--asi); margin-bottom:6px;}
+  #leadstory h2{font-family:"Liberation Serif","DejaVu Serif",Georgia,serif; font-size:32px; line-height:1.06; font-weight:700; margin-bottom:8px;}
+  #leadstory p{font-size:13.5px; line-height:1.5; color:#26221b; margin-bottom:7px;}
+  #leadstory p.last{color:#3c382e; font-size:12.5px;}
+  #leadstory .dateline{font-size:9.5px; color:var(--faint); letter-spacing:.06em; text-transform:uppercase; margin-top:4px;}
+  /* two secondary heroes */
+  #seconds{display:flex; border-bottom:1.5px solid var(--rule);}
+  .sec{flex:1 1 0; padding:10px 14px 8px 14px; border-right:1px solid #b9ae98; display:flex; flex-direction:column;}
+  .sec:last-child{border-right:none;}
+  .sec .kicker{font-size:8.8px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; margin-bottom:4px;}
+  .sec .art{height:140px; border:1px solid #b9ae98; position:relative; overflow:hidden; margin-bottom:6px;}
+  .sec .art svg{position:absolute; inset:0; width:100%; height:100%;}
+  .sec h3{font-size:18px; line-height:1.12; margin-bottom:5px;}
+  .sec p{font-size:11px; line-height:1.4; color:#26221b;}
+  .s-amr{border-top:4px solid var(--amr);} .s-amr .art{background:#ecc5be;}
+  .s-ocn{border-top:4px solid var(--ocn);} .s-ocn .art{background:#c9e8e8;}
+  /* brief rows: 18 stories, big type, two columns */
+  #briefs{padding:6px 22px 0 22px; border-top:1px solid #b9ae98;}
+  #briefs .bh{font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin:2px 0 6px 0;}
+  #briefs .bh .sq{display:inline-block; width:9px; height:9px; margin-right:5px; background:var(--mid);}
+  .cols{display:flex; gap:20px;}
+  .col{flex:1 1 0; height:318px; overflow:hidden;}
+  .brief{display:flex; gap:7px; margin-bottom:7.5px; align-items:flex-start;}
+  .brief .n{flex:0 0 21px; font-size:10px; font-weight:700; color:#fff; border-radius:2px; height:15px; text-align:center; line-height:14px; margin-top:1px;}
+  .brief p{font-size:11px; line-height:1.36; color:#1e1b16;}
+  .brief p b{font-size:11px;}
+  .b-amr p b{color:var(--amr);} .b-eur p b{color:var(--eur);} .b-mid p b{color:#9c6216;}
+  .b-asi p b{color:var(--asi);} .b-afr p b{color:var(--afr);} .b-ocn p b{color:var(--ocn);}
+  /* numbers + footer */
+  #numbers{border-top:1.5px solid var(--rule); margin-top:2px; padding:7px 22px 4px 22px; display:flex; justify-content:space-between;}
+  .fig{text-align:center; min-width:0;}
+  .fig .v{font-size:16.5px; font-weight:700; line-height:1.05;}
+  .fig .l{font-size:9px; color:var(--faint); line-height:1.2; margin-top:1px;}
+  .amr{background:var(--amr);} .eur{background:var(--eur);} .mid{background:var(--mid);}
+  .asi{background:var(--asi);} .afr{background:var(--afr);} .ocn{background:var(--ocn);}
+  .t-amr{color:var(--amr);} .t-eur{color:var(--eur);} .t-mid{color:var(--mid);}
+  .t-asi{color:var(--asi);} .t-afr{color:var(--afr);} .t-ocn{color:var(--ocn);}
+  #footer{margin-top:3px; padding:4px 22px 4px 22px; border-top:1px solid #b9ae98; font-size:9px; color:var(--faint); display:flex; justify-content:space-between; letter-spacing:.03em;}
+</style>
+</head>
+<body>
+
+<!-- ============ MASTHEAD ============ -->
+<div id="masthead" class="band">
+  <div class="corners"><span>The World Today</span><span>21 stories · 6 continents</span><span>All times UTC</span></div>
+  <h1>Thursday 19 November 2026</h1>
+  <div class="strap">One page for one day — <b>everything below happened, or was first reported, on this day</b></div>
+</div>
+
+<!-- ============ LEAD STORY ============ -->
+<div id="lead" class="band">
+  <div id="leadart">
+    <svg viewBox="0 0 404 260" preserveAspectRatio="xMidYMid meet">
+      <rect width="404" height="260" fill="#e9def2"/>
+      <rect x="30" y="70" width="344" height="150" rx="75" fill="#4c3a5e"/>
+      <circle cx="110" cy="145" r="46" fill="#b03a2e"/>
+      <circle cx="202" cy="145" r="46" fill="#c8a02a"/>
+      <circle cx="294" cy="145" r="46" fill="#1f5f8b"/>
+      <rect x="80" y="18" width="58" height="40" fill="#b03a2e" transform="rotate(-12 109 38)"/>
+      <rect x="173" y="14" width="58" height="40" fill="#c0392b" transform="rotate(10 202 34)"/>
+      <rect x="266" y="18" width="58" height="40" fill="#1f5f8b" transform="rotate(-9 295 38)"/>
+      <circle cx="110" cy="145" r="46" fill="none" stroke="#f4efe3" stroke-width="5"/>
+      <circle cx="202" cy="145" r="46" fill="none" stroke="#f4efe3" stroke-width="5"/>
+      <circle cx="294" cy="145" r="46" fill="none" stroke="#f4efe3" stroke-width="5"/>
+      <rect x="174" y="208" width="56" height="9" rx="4" fill="#f4efe3"/>
+      <text x="202" y="244" font-size="15" text-anchor="middle" fill="#4c3a5e" font-family="Liberation Sans" font-weight="bold">three flags, one table — Shenzhen</text>
+    </svg>
+  </div>
+  <div id="leadstory">
+    <div class="kicker">1 · Asia · The day's big summit</div>
+    <h2>Trump, Xi and Putin hold the first three-power summit</h2>
+    <p>Nuclear arms control, the Iran war and energy stability top the agenda as the leaders of the world's three largest nuclear powers meet in Shenzhen, on the sidelines of APEC — the first such meeting ever.</p>
+    <p class="last">Xi greeted Trump at the airport — a first for a foreign leader — before separate one-on-ones with both Xi and Putin. Trump: "We don't need any help." Kyiv waits for a debrief.</p>
+    <div class="dateline">Shenzhen · Thursday 19 November 2026</div>
+  </div>
+</div>
+
+<!-- ============ SECONDARY HEROES (2–3) ============ -->
+<div id="seconds" class="band">
+  <div class="sec s-amr">
+    <div class="kicker t-amr">2 · Business · Record Wall Street debut</div>
+    <div class="art">
+      <svg viewBox="0 0 280 118" preserveAspectRatio="xMidYMid meet">
+        <rect x="30" y="66" width="40" height="46" fill="#8b8274"/><rect x="78" y="50" width="40" height="62" fill="#7c7466"/>
+        <rect x="126" y="30" width="40" height="82" fill="#4c3a5e"/><rect x="174" y="12" width="40" height="100" fill="#b03a2e"/>
+        <rect x="182" y="22" width="24" height="6" fill="#f4efe3"/><rect x="182" y="34" width="24" height="6" fill="#f4efe3"/>
+        <rect x="182" y="46" width="24" height="6" fill="#f4efe3"/><rect x="182" y="58" width="14" height="6" fill="#f4efe3"/>
+        <path d="M26 100 L220 16" stroke="#1e7d4e" stroke-width="4" fill="none"/>
+        <text x="222" y="96" font-size="20" font-weight="bold" fill="#1e7d4e">$1.5tn</text>
+      </svg>
+    </div>
+    <h3>Anthropic prices the biggest IPO of all time</h3>
+    <p>The AI giant set $83 a share for its debut, raising $81bn — ahead of SpaceX's $75bn — as investors shrug off talk of an AI bubble and a week of US bank and airline outages.</p>
+  </div>
+  <div class="sec s-ocn">
+    <div class="kicker t-asi">3 · Culture · Thirteen-year wait ends</div>
+    <div class="art">
+      <svg viewBox="0 0 280 118" preserveAspectRatio="xMidYMid meet">
+        <rect x="76" y="10" width="128" height="98" rx="10" fill="#181512"/>
+        <rect x="88" y="22" width="104" height="74" rx="6" fill="#4c3a5e"/>
+        <circle cx="120" cy="59" r="15" fill="#c8a02a"/><circle cx="160" cy="59" r="15" fill="#b03a2e"/>
+        <path d="M140 45 L150 59 L140 73 L130 59 Z" fill="#1f5f8b"/>
+        <rect x="102" y="92" width="76" height="6" rx="3" fill="#c8a02a"/>
+      </svg>
+    </div>
+    <h3>Grand Theft Auto VI goes on sale at last</h3>
+    <p>Rockstar's crime epic launched at midnight worldwide — the biggest entertainment release of the year, with queues reported from New York to Tokyo.</p>
+  </div>
+</div>
+
+<!-- ============ THE DAY IN BRIEF (4–21) ============ -->
+<div id="briefs" class="band">
+  <div class="bh"><span class="sq"></span>The day in brief — 18 more stories, every line from Thursday 19 November 2026</div>
+  <div class="cols">
+    <div class="col" id="colA">
+      <div class="brief b-asi"><span class="n asi">4</span><p><b>India.</b> Cyclone Akvan: 50,000 evacuated in Odisha; 448 shelters open as 100 kmph winds close on Puri.</p></div>
+      <div class="brief b-mid"><span class="n mid">5</span><p><b>Kuwait.</b> Iranian drones strike the US base at Ali Al-Salem; Patriot batteries hit, air defences intercept.</p></div>
+      <div class="brief b-mid"><span class="n mid">6</span><p><b>Hormuz.</b> A tanker is struck off Oman's Khasab; Iran says three ships have hit mines in the strait.</p></div>
+      <div class="brief b-mid"><span class="n mid">7</span><p><b>Yemen.</b> The army reports 700 operations against the Houthis; 142 commanders and fighters hit in a day.</p></div>
+      <div class="brief b-eur"><span class="n eur">8</span><p><b>Crimea.</b> Ukraine hits the Crimean Bridge for a third time in a week; traffic suspended again.</p></div>
+      <div class="brief b-amr"><span class="n amr">9</span><p><b>Washington.</b> Hakeem Jeffries nominated House speaker — the first Black holder of the gavel, from January.</p></div>
+      <div class="brief b-amr"><span class="n amr">10</span><p><b>Alaska.</b> Mary Peltola wins the Senate seat, giving Democrats a 56–44 majority.</p></div>
+      <div class="brief b-amr"><span class="n amr">11</span><p><b>Caracas.</b> The US and Venezuela sign a pact restoring military ties, from training to intelligence.</p></div>
+      <div class="brief b-eur"><span class="n eur">12</span><p><b>London.</b> A Van Gogh sells for a record $190.4m after a row over its Nazi-era history.</p></div>
+    </div>
+    <div class="col" id="colB">
+      <div class="brief b-asi"><span class="n asi">13</span><p><b>Kumamoto.</b> A magnitude-5.7 earthquake strikes at 2:22am; lower-5 intensity recorded.</p></div>
+      <div class="brief b-asi"><span class="n asi">14</span><p><b>Dhaka.</b> Paramilitaries deploy nationwide as Hasina's planned December return sparks clashes.</p></div>
+      <div class="brief b-eur"><span class="n eur">15</span><p><b>The Hague.</b> The UN court hands down its historic genocide verdict on Myanmar over the Rohingya.</p></div>
+      <div class="brief b-afr"><span class="n afr">16</span><p><b>DRC.</b> Ebola passes six months: 11,000+ cases and 5,400+ dead, the WHO says.</p></div>
+      <div class="brief b-amr"><span class="n amr">17</span><p><b>Haiti.</b> The UN tallies 4,595 killed in gang violence this year, January to October.</p></div>
+      <div class="brief b-afr"><span class="n afr">18</span><p><b>Mogadishu.</b> The president sacks chief justice Bashe Yusuf Ahmed a day before a term ruling.</p></div>
+      <div class="brief b-ocn"><span class="n ocn">19</span><p><b>NZ.</b> The High Court rules the government's pay equity changes breached women's rights.</p></div>
+      <div class="brief b-amr"><span class="n amr">20</span><p><b>Space.</b> Voyager 1 becomes the first human object one light-day from Earth — 26 billion km.</p></div>
+      <div class="brief b-eur"><span class="n eur">21</span><p><b>Kyiv.</b> Zelenskyy expects a full debrief from US envoys after the Shenzhen summit.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BY THE NUMBERS + FOOTER ============ -->
+<div id="numbers" class="band">
+  <div class="fig t-amr"><div class="v">$1.5tn</div><div class="l">Anthropic IPO valuation</div></div>
+  <div class="fig t-amr"><div class="v">$81bn</div><div class="l">raised — biggest ever</div></div>
+  <div class="fig t-eur"><div class="v">$190.4m</div><div class="l">Van Gogh record price</div></div>
+  <div class="fig t-amr"><div class="v">50,000</div><div class="l">evacuated — Cyclone Akvan</div></div>
+  <div class="fig t-afr"><div class="v">11,000+</div><div class="l">DRC Ebola cases</div></div>
+  <div class="fig t-amr"><div class="v">26bn km</div><div class="l">Voyager 1 — one light-day</div></div>
+  <div class="fig t-amr"><div class="v">56–44</div><div class="l">new US Senate split</div></div>
+  <div class="fig t-mid"><div class="v">142</div><div class="l">Houthi commanders hit</div></div>
+</div>
+<div id="footer" class="band">
+  <span>Thursday 19 November 2026 · the world in one image</span>
+  <span>Compiled from reports by AP · Reuters · BBC · Xinhua · Kyodo · Arab News</span>
+  <span>All events dated this day, UTC</span>
+</div>
+</body>
+</html>
